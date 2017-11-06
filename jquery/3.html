@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			div{
+				width: 200px;
+				height: 200px;
+				border: 1px solid pink;
+				display: none;
+			}
+			.lightblue{
+				background: lightblue;
+			}
+		</style>
+		<script src="jquery-3.2.0.js"></script>
+		<script>
+			$(function(){
+				// $('input').click(function(){
+				// 	//console.log(this) // 指向触发事件的元素
+				// 	/*$('input').removeClass('lightblue')
+				// 	$(this).addClass('lightblue')*/
+
+				// 	//let i = $(this).index();调用index这个元素在同级的元素中所处的下标
+
+				// 	let i = $('input').index(this) //这个元素在指定的元素集合中所处的下标
+
+
+				// 	//控制div显示隐藏
+				// 	/*$('div').css('display','none');
+				// 	$('div').eq(i).css('display','block')*/
+
+				// 	/*//另一种简写方式控制div显示隐藏
+				// 	$('div').hide();
+				// 	$('div').eq(i).show()*/
+
+				// 	//链式操作
+				// 	$('input').removeClass("lightblue").eq(i).addClass('lightblue')
+				// 	$('div').hide().eq(i).show()
+
+				// })
+
+				//原生的想法，jq的思路
+				$('input').each(function(index,ele){
+					$(ele).data('index',index)
+					$(ele).click(function(){
+						$('input').removeClass('lightblue')
+						$(this).addClass('lightblue')
+						$('div').hide()
+						let i = $(this).data('index')//获取下标
+						$('div').eq(i).show()
+					})
+				})
+			})
+
+
+		</script>
+	</head>
+
+	<body>
+		<input type="button" value="按钮1" class="lightblue" />
+		<input type="button" value="按钮2" />
+		<input type="button" value="按钮3" />
+		<div style="display:block;">按钮1</div>
+		<div>按钮2</div>
+		<div>按钮3</div>
+	</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="css/baidumusic.css" />
+		<script src="jquery-3.2.0.js"></script>
+		<script>
+			$(function(){
+				$('.box_t li:even').css('background','#fff')
+				$('.box_t li:odd').css('background','pink')
+				let lis = $('.box_t li');
+				let arr = ['#fff','pink']
+				lis.mouseenter(function(){
+						$(this).css('background','lightblue')
+					})
+					.mouseleave(function(){
+						let input = $(this).find('input');
+						input.prop('checked')
+						//console.log(input.prop('checked'))
+						if(!input.prop('checked')){
+							let i = $(this).index();
+							$(this).css('background',arr[i%2])
+						}
+					})
+				let inputs = $('.box_t input');				
+				$('input[name="checkAll"]').click(function(){
+					let checked = $(this).prop('checked')
+					inputs.prop('checked',checked)
+					if(checked){
+						lis.css('background','lightblue')
+					}else{
+						$('.box_t li:even').css('background','#fff')
+						$('.box_t li:odd').css('background','pink')
+					}
+				})
+				$('.box_t').on('click','input',function(){
+					let a = inputs.toArray().find(function(item){
+						return item.checked === false
+					})
+					$('input[name="checkAll"]').prop('checked',!a)
+				})
+			})
+		</script>
+	</head>
+	<body>
+		<div class="big_box">
+			<div class="box">
+				<ul class="box_t">
+					<li id="item">
+						<input type="checkbox" />
+						<span>私奔</span>
+						<i>梁博</i>
+					</li>
+					<li id="item">
+						<input type="checkbox" />
+						<span>北京北京</span>
+						<i>梁博 黄勇</i>
+					</li>
+					<li id="item">
+						<input type="checkbox" />
+						<span>我爱你中国</span>
+						<i>梁博</i>
+					</li>
+					<li id="item">
+						<input type="checkbox" />
+						<span>花火</span>
+						<i>梁博</i>
+					</li>
+					<li id="item">
+						<input type="checkbox" />
+						<span>回来</span>
+						<i>梁博</i>
+					</li>
+					<li id="item">
+						<input type="checkbox" />
+						<span>私奔</span>
+						<i>梁博</i>
+					</li>
+				</ul>
+				<div class="box_b">
+					<input type="checkbox" name="checkAll"  />
+					<span id="quanxuan">全选</span>
+					<ul class="clearfix">
+						<li class="clearfix">
+							<i class="i1"></i>
+							<span>收藏</span>
+						</li>
+						<li class="clearfix">
+							<i class="i2"></i>
+							<span>添加</span>
+						</li>
+						<li class="margin0 clearfix">
+							<i class="i3"></i>
+							<span>删除</span>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>		
+	</body>
+</html>

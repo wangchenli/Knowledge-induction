@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+			(function(){
+				let Miaov = function(){
+					return new Miaov.fn.init()
+				}
+				Miaov.fn = Miaov.prototype = {
+					constructor:Miaov,
+					css(){
+						console.log('css')
+					}
+				}
+
+				let init = Miaov.fn.init = function(){
+
+				}
+				init.prototype = Miaov.prototype;
+				window.Miaov = window._ = Miaov;
+
+
+			})()
+			let s = _()
+			console.log(s)
+
+		</script>
+	</head>
+
+	<body>
+		<div id="div1"></div>
+	</body>
+</html>

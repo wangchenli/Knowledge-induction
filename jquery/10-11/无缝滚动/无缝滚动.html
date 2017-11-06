@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		
+		<link rel="stylesheet" type="text/css" href="slide.css" />
+		<style type="text/css">
+			body{
+				background-color: #ffd800;
+			}
+			.nav .blue {
+				background-color: blue;
+			}
+		</style>
+		<script>
+			/*
+				当给一个元素添加样式，如没有起作用，第一反应
+
+					检查元素
+			*/
+		</script>
+		<script src="../jquery-3.2.0.js"></script>
+	</head>
+
+	<body>
+		<div class="slide">
+			<div  class="tagClient">
+				<ul class="list">
+					<li><img src="./ads/1.png" /></li> 
+					<li><img src="./ads/2.png" /></li> 
+					<li><img src="./ads/3.png" /></li> 
+					<li><img src="./ads/4.png" /></li> 
+					<li><img src="./ads/5.png" /></li>
+				</ul>
+			</div>
+			<div class="prev"></div>
+			<div class="next"></div>
+			<div class="nav">
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+			</div>
+		</div>
+		<script>
+			let n = 0;
+			let list = $('.list');
+			let firstOne = list.find('li:first');
+			let w = firstOne.width()
+			let l = list.find('li').length;
+			
+			let spans = $('.nav span');
+			spans.eq(0).addClass('blue')
+			function fn(){
+				n++
+				if(n > l-1){
+					n = 0;
+				}
+				spans.eq(n-1).removeClass('blue')
+				spans.eq(n).addClass('blue')
+				list.stop().animate({
+					left: -n*w
+				},300)
+			}
+			let s = setInterval(fn,1000)
+
+			$('.tagClient').mouseover(function(){
+				clearInterval(s)
+			})
+			$('.tagClient').mouseout(function(){
+				s = setInterval(fn,1000)
+			})
+
+			$('.next').click(function(){
+				if(list.is(':animated')) return
+				fn()
+			})
+			$('.prev').click(function(){
+				if(list.is(':animated')) return
+				n--
+				if(n < 0){
+					n = l-1
+				}
+				spans.eq(n === l-1 ? 0 : n+1).removeClass('blue')
+				spans.eq(n).addClass('blue')
+				list.stop().animate({
+					left: -n*w
+				},300)
+			})
+
+			$('.nav').on('mouseover','span',function(){
+				spans.eq(n).removeClass('blue')
+				$(this).addClass('blue')
+				n = $(this).index()
+				list.stop().animate({
+					left: -n*w
+				},300)
+			})
+		</script>
+	</body>
+
+</html>

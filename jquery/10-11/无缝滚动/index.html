@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		
+		<link rel="stylesheet" type="text/css" href="slide.css" />
+		<style type="text/css">
+			body{
+				background-color: #ffd800;
+			}
+			.nav .blue {
+				background-color: blue;
+			}
+		</style>
+		<script>
+			/*
+				当给一个元素添加样式，如没有起作用，第一反应
+
+					检查元素
+			*/
+		</script>
+		<script src="../jquery-3.2.0.js"></script>
+	</head>
+
+	<body>
+		<div class="slide">
+			<div  class="tagClient">
+				<ul class="list">
+					<li><img src="./ads/1.png" /></li> 
+					<li><img src="./ads/2.png" /></li>
+				</ul>
+			</div>
+			<div class="prev"></div>
+			<div class="next"></div>
+			<div class="nav">
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+			</div>
+		</div>
+		<script>
+			let arr = 
+			["./ads/1.png","./ads/2.png","./ads/3.png","./ads/4.png","./ads/5.png"];
+			
+			let list = $('.list');
+			let firstOne = list.find('li:first');
+			let imgA = list.find('img:first');
+			let imgB = list.find('img:last');
+			let w = firstOne.width();
+			
+			let spans = $('.nav span');
+			spans.eq(0).addClass('blue')
+
+			let n = 0;
+			function fn(){
+				if(list.is(':animated')) return
+				n++;
+				if(n>arr.length-1){
+					n = 0
+				}
+				imgB.attr('src',arr[n])
+				let aa = imgB.attr('src')
+
+				spans.eq(n-1).removeClass('blue')
+				spans.eq(n).addClass('blue')
+
+				list.stop()
+					.animate({
+						left: -w
+					},300,function(){
+						imgA.attr('src',aa)
+
+					})
+					.animate({
+						left: 0
+					},1)
+			}
+
+			
+			
+			/*let s = setInterval(fn,1000)
+
+			$('.tagClient').mouseover(function(){
+				clearInterval(s)
+			})
+			$('.tagClient').mouseout(function(){
+				s = setInterval(fn,1000)
+			})*/
+
+			$('.next').click(fn)
+			$('.prev').click(function(){
+				if(list.is(':animated')) return
+				n--;
+				if(n<0){
+					n = arr.length-1
+				}
+				list.css('left',-w)
+
+				
+				let aa = imgA.attr('src')
+				imgB.attr('src',aa)
+				imgA.attr('src',arr[n])
+
+				spans.eq(n === arr.length-1 ? 0 : n+1).removeClass('blue')
+				spans.eq(n).addClass('blue')
+
+				list.stop()				
+					.animate({
+						left: 0
+					},300)
+			})
+
+			$('.nav').on('mouseover','span',function(){
+				if(list.is(':animated')) return
+				spans.eq(n).removeClass('blue')
+				$(this).addClass('blue')
+				n = $(this).index()
+				imgB.attr('src',arr[n])
+				let aa = imgB.attr('src')
+				list.stop()
+					.animate({
+						left: -w
+					},300,function(){
+						imgA.attr('src',aa)
+
+					})
+					.animate({
+						left: 0
+					},1)
+			})
+		</script>
+	</body>
+
+</html>

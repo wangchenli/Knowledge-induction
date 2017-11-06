@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			div{
+				width: 100px;
+				height: 100px;
+				line-height: 100px;
+				position: absolute;
+				left: 0;
+				text-align: center;
+			}
+			#div1{
+				top: 0;
+				background: pink;
+			}
+			#div2{
+				top: 200px;
+				background: lightblue;
+			}
+		</style>
+		<script src="./jquery-3.2.0.js"></script>
+		<script src="./events.js"></script>
+		
+	</head>
+
+	<body>
+		<div id="div1">div1</div>
+		<div id="div2">div2</div>
+		<script>
+
+			class Drag extends Events{
+				constructor(dragId){
+					super()
+					this.dragEle = $(dragId);
+					this.init();
+				}
+				init(){
+					this.dragEle.mousedown(this.down.bind(this));
+				}
+				down(ev){
+					ev.preventDefault();
+					this.disX = ev.pageX - $(this.dragEle).offset().left;
+					this.disY = ev.pageY - $(this.dragEle).offset().top;
+					this.moveFn = this.move.bind(this);
+					$(document).mousemove(this.moveFn);
+				}
+				move(ev){
+					ev.preventDefault();
+					this.dragEle.css({
+		       			left: ev.pageX - this.disX,
+		       			top: ev.pageY - this.disY
+		       		})
+					
+		       		this.upFn = this.up.bind(this)
+		       		$(document).mouseup(this.upFn)
+				}
+				up(){
+					this.emit('up-f')
+
+					$(document).off('mousemove',this.moveFn)
+					$(document).off('mouseup',this.upFn)
+				}
+
+			}
+			let d1 = new Drag('#div1')
+			d1.on('up-f',function(){
+				$('#div1').css({
+					background: 'yellow'
+				})
+			})
+			let d2 = new Drag('#div2')
+			d2.on('up-f',function(){
+				$('#div2').css({
+					opacity: 0.7,
+					background: 'lightgreen'
+				})
+			})
+
+
+			//----------------------------------------------
+			/*let div1 = $('#div1')
+			div1.on('mousedown',function(ev){
+		       	var disX = ev.pageX - div1.offset().left
+				var disY = ev.pageY - div1.offset().top
+				function move(ev){
+		       		div1.css({
+		       			'left':ev.pageX - disX + 'px',
+		       			'top':ev.pageY - disY + 'px'
+		       		})
+		       	}
+		       	function up(ev){
+		       		div1.css({
+		       			'background': 'yellow'
+		       		})
+		       		$(document).off('mousemove',move)
+		       		$(document).off('mouseup',up)
+		       	}
+		       	$(document).on('mousemove',move)
+		       	$(document).on('mouseup',up)
+		   	});*/
+
+			
+		</script>
+	</body>
+</html>

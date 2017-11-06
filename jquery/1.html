@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			div{
+				width: 200px;
+				height: 200px;
+				border: 1px solid pink;
+				display: none;
+			}
+			.lightblue{
+				background: lightblue;
+			}
+		</style>
+		<script src="jquery-3.2.0.js"></script>
+		<script>
+			$(function(){
+				$('input').click(function(){
+					/*$('input').removeClass('lightblue')
+					$(this).addClass('lightblue')
+					//let i = $(this).index(); //在所有同级中所处的下标
+					let i = $('input').index(this);
+					//$('div').css('display','none')
+					//$($('div')[i]).css('display','block')  //转成jq元素
+					//$($('div').get(i)).css('display','block')  //转成jq元素
+					//$('div').eq(i).css('display','block')
+					$('div').hide();
+					$('div').eq(i).show()*/
+
+					//链式操作
+					let i = $('input').index(this);
+					$('input').removeClass('lightblue').eq(i).addClass('lightblue');
+					$('div').hide().eq(i).show()
+				})
+
+			})
+		</script>
+	</head>
+
+	<body>
+		<input type="button" value="按钮1" class="lightblue"	/>
+		<input type="button" value="按钮2"	/>
+		<input type="button" value="按钮3"	/>
+		<div style="display:block;">按钮1</div>
+		<div>按钮2</div>
+		<div>按钮3</div>
+	</body>
+</html>

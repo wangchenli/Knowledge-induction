@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			div{
+				width: 100px;
+				height: 100px;
+				line-height: 100px;
+				position: absolute;
+				left: 0;
+				text-align: center;
+			}
+			#div1{
+				top: 50px;
+				background: pink;
+			}
+			#div2{
+				top: 200px;
+				background: lightblue;
+			}
+		</style>
+		<script src="./jquery-3.2.0.js"></script>
+		
+	</head>
+
+	<body>
+		<input type="button" value="ceshi" id="btn" />
+		<input type="button" value="ceshi2" id="btnStop" />
+		<input type="button" value="ceshi3" id="btnDo" />
+		
+		<div><div id="div1">div1</div></div>
+		<div id="div2">div2</div>
+		<script>
+			
+			$('#btn').click(function(){
+				$('#div1')
+					.animate({
+						left: 1000
+					},1500)					
+					.animate({
+						width: 200
+					},1000)
+					.animate({
+						fontSize: 50
+					},1000)
+					.animate({
+						rgb: (255,255,255)
+					},1000)
+					.animate({
+						opacity: 0
+					},1500)
+
+				$('#btnStop').click(function(){
+					$('#div1').stop(true)
+				})
+				$('#btnDo').click(function(){
+					if($('#div1').is(':animated')){
+						console.log(1111)
+						$("#div1").css('background','yellow')
+					}else{
+						console.log(222)
+					}
+				})
+
+			})
+			
+		</script>
+	</body>
+</html>
