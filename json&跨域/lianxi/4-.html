@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">        
+    </head>
+    <body>
+        <input type="button" value="获取数据" id="btn" />
+        <script>
+            btn.onclick = function(){
+                let xhr = new XMLHttpRequest();
+                xhr.open('get','http://localhost/9-06/backend/get_sae.php/?'+Math.random(),true)
+                xhr.onload = function(){
+                    console.log(xhr.responseText)
+                }
+                xhr.send();
+            }
+        </script>
+    </body>
+</html>

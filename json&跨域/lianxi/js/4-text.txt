@@ -1,0 +1,7 @@
+﻿
+let obj = {
+	username:'leo'
+}
+
+//ִ执行函数
+fn(obj)

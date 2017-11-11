@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+        <h2>注册get-ajax</h2>
+        用户名：<input type="text" name="user" id="username"/><span id="span"></span><br/>
+        密码：<input type="password" name="password"/><br/>
+        <input type="button" value="提交" id="send">
+        <script>
+            send.onclick = function(){
+                let xhr = new XMLHttpRequest();
+                xhr.open('GET','http://localhost/9-05/backend/php/get.php?user='+username.value,true)
+                xhr.onload = function(){
+                    span.innerHTML = xhr.responseText;
+                }
+                xhr.send()
+            }
+        </script>
+    </body>
+</html>
