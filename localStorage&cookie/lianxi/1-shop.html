@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+        <h2>商品</h2>
+        <div>
+            <span>大雄</span>
+            <span>犬夜叉</span>
+            <span>杀生丸</span>
+        </div>
+        <hr/>
+        <h2>购物车</h2>
+        <ul id="list">
+            <!-- <li></li> -->
+        </ul>
+        <script>   
+            window.addEventListener('storage',function(){
+                //触发这个事件时，拿到另外窗口添加到localStorage中的数据
+                let data = localStorage.getItem('shop');
+                //把data转成数组
+                let dataArr = JSON.parse(data);
+                console.log(localStorage.getItem('shop'))
+
+                //更新数据，当触发了storage事件说明数据更新了
+                arr = dataArr;
+                let html = dataArr.map((item) => {
+                    return `<li>${item}</li>` 
+                })
+                list.innerHTML = html.join('');
+            })
+            let spans = document.querySelectorAll('span');
+            let list = document.getElementById('list');
+            
+            //一进入页面中，先从localStorage中拿到数据，渲染在页面中
+            let data = localStorage.getItem('shop');
+            let dataArr = [];
+            //1.先拿值，如果数据存在，它是一个json的字符串
+            if(data){
+                //把data转成数组，
+                dataArr = JSON.parse(data);
+                let html = dataArr.map((item) => {
+                    return `<li>${item}</li>`
+                })
+                list.innerHTML = html.join('');
+            }
+            
+
+            //arr初始值应该是从locaStorage拿到的数组
+            let arr = dataArr;
+            for(var i=0;i<spans.length;i++){
+                spans[i].onclick = function(){
+                    //arr中添加内容
+                    arr.push(this.innerHTML)
+                    let newLi = `<li>${this.innerHTML}</li>`
+                    list.innerHTML += newLi;
+
+                    //放在localStorage中的应该是一个数组，不是一个值
+                    localStorage.setItem('shop',JSON.stringify(arr))
+                }
+            }
+        </script>
+    </body>
+</html>

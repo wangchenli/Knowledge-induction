@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+        <script>
+            document.cookie = "miaov=123";
+            // document.cookie = 'aa=33'
+            // console.log(document.cookie)
+
+
+            function setCookie(key,value,n){
+                // n为0，已经设置了过期时间，设置cookie的那一刻是过期时间，停留一下就过期了
+                if(n){
+                    let d = new Date();
+                    d.setDate(d.getDate()+n);
+                    document.cookie = key+'='+value+"; expires="+d.toUTCString()
+                }else{
+                    document.cookie = key+'='+value
+                }
+                
+            }
+            setCookie('mm',456)
+            // console.log(document.cookie)
+
+            function getCookie(key){
+                let cookies = document.cookie;
+                
+                cookies = cookies.split('; ')
+                //console.log(cookies)
+                for(var i=0;i<cookies.length;i++){
+                    let arr = cookies[i].split('=')
+                    console.log(arr)
+                    if(arr[0] === key){
+                        return arr[1]
+                    }
+                }
+            }
+            
+            console.log(getCookie('mm'))
+
+            function removeCookie(key){
+                setCookie(key,null,-1)
+            }
+            removeCookie('mm')
+        </script>
+    </body>
+</html>
