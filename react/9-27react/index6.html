@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script src="./src/react.development.js"></script>
+		<script src="./src/react-dom.development.js"></script>
+		<script src="./src/babel.min.js"></script>
+	</head>
+
+	<body>
+		<div id="box">
+			 
+		</div>
+		<script type="text/babel">
+			
+			class Hello extends React.Component{
+				constructor(props){
+					super(props)
+					this.state = {
+						color:'pink',
+						val:'hi,girl!'
+					}
+				}
+				changeColor(){
+					this.setState({
+						color: 'lightblue',
+						val:'hello,boy'
+					})
+				}
+				render(){
+					let style = {width:'100px',height:'50px',background:this.state.color};
+					
+					return (
+						<div>
+							<div style={style} onClick={this.changeColor.bind(this)}>{this.props.hello}</div>
+							<ul>
+								<li>{this.state.val}</li>
+								<li>1111111111111</li>
+							</ul>
+						</div>
+					
+					)
+						
+					
+				}
+			}
+			ReactDOM.render(
+				<Hello hello={'hehe'}></Hello>,
+				document.getElementById('box')
+			)
+
+
+		</script>
+	</body>
+</html>

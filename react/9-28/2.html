@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="./src/react.development.js"></script>
+		<script src="./src/react-dom.development.js"></script>
+		<script src="./src/babel.min.js"></script>
+    </head>
+    <body>
+        <div id="box">
+            
+        </div>
+        <script type="text/babel">
+            class Hello extends React.Component{
+                constructor(props){
+                    super(props)
+                    this.state = {
+                        val : '123'
+                    }
+
+                }
+                change(e){
+                    this.setState({
+                        val:  e.target.value
+                    })
+                }
+                render(){
+                    return (
+                        <div>
+                             <input type="text" onChange={this.change.bind(this)} value={this.state.val} />
+                             <p>{this.state.val}</p>
+                        </div>
+                    )
+                }
+            }
+            ReactDOM.render(
+                <Hello/>,
+                box
+            )
+        </script>
+    </body>
+</html>

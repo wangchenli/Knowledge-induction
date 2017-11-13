@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script src="./src/react.development.js"></script>
+		<script src="./src/react-dom.development.js"></script>
+		<script src="./src/babel.min.js"></script>
+	</head>
+
+	<body>
+		<div id="box">
+			 <h2>
+				<span>hello</span>
+			</h2> 
+			
+		</div>
+		<script type="text/babel">
+			ReactDOM.render(
+				<h2>
+					<span>span</span>
+					<span>span</span>
+					<span>span</span>
+					<a href="http://www.baidu.com">百度</a>
+					<img src="https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/bd_logo1_31bdc765.png"/>
+				</h2>,
+				document.getElementById('box')
+			)
+
+
+		</script>
+	</body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="./src/react.development.js"></script>
+		<script src="./src/react-dom.development.js"></script>
+		<script src="./src/babel.min.js"></script>
+    </head>
+    <body>
+        <div id="box">
+        <!--  <div class="message-header">
+            <input type="text" />
+        </div>
+        <ul>
+            <li>
+                <span>123</span>
+                <input type="button" value="删除" />
+            </li>
+            <li>
+                <span>123</span>
+                <input type="button" value="删除" />
+                </li>
+            </ul> -->
+      
+		</div>
+        <script type="text/babel">
+            /*class App extends React.Component{
+               render(){
+                   return (
+                       
+                   )
+               }
+            }*/
+            class Head extends React.Component{                
+                addItem(ev){
+                    if(ev.keyCode === 13){
+                        console.log(ev.target.value)
+                        this.props.addItemParent(ev.target.value)
+                        ev.target.value = '';
+                    }                    
+                }
+                render(){
+                    return (
+                        <div className="message-header">
+                            <input 
+                                type="text" 
+                                onKeyDown={this.addItem.bind(this)}
+                            />
+                        </div>
+                   )
+               }
+            }
+            
+            class Content extends React.Component{
+                removeItemPro(i){
+                    this.props.removeItemProPro(i)
+                }
+                render(){
+                    return (
+                        <ul>
+                            {
+                                this.props.list.map((item,index)=>{
+                                    return <Item 
+                                        key={index} 
+                                        item={item} 
+                                        index={index}
+                                        removeItemPro={this.removeItemPro.bind(this)}
+                                    >{item}</Item>
+                                })
+                            }
+                        </ul>
+                   )
+               }
+            }
+            class Item extends React.Component{
+                removeItem(){
+                    this.props.removeItemPro(this.props.index+':hahah')
+                }
+                render(){
+                    return (                        
+                        <li>
+                            <span>{this.props.item}</span>
+                            <input type="button" value="X" onClick={this.removeItem.bind(this)} />
+                        </li>
+                   )
+               }
+            }
+
+
+            class App extends React.Component{
+                constructor(props){
+                    super(props)
+                    this.state = {
+                        list: this.props.list
+                    }
+                    
+                }
+                addItemParent(val){
+                    let arr = this.props.list;
+                    arr.push(val)
+                    this.setState({
+                        list: arr
+                    })
+                }
+                removeItemProPro(index){
+                    let arr = this.props.list;
+                    arr.splice(index,1)
+                    this.setState({
+                        list: arr
+                    })
+                }
+                render(){
+                    return (
+                        <div>
+                            <h2>留言板</h2>
+                            <Head addItemParent={this.addItemParent.bind(this)}></Head>
+                            <Content 
+                                list={this.props.list}
+                                removeItemProPro={this.removeItemProPro.bind(this)}
+                            ></Content>
+                        </div>
+                   )
+               }
+            }
+            let list = [11,22,33,44]
+            ReactDOM.render(
+                <App list={list} />,
+                box
+            )
+        </script>
+    </body>
+</html>
