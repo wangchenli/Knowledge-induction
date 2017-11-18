@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            #box div{
+                width: 100px;
+                height:100px;
+                background: pink;
+                display: none;
+            }
+            .yellow{
+                background: yellow;
+            }
+        </style>
+        <script src="vue.js"></script>
+    </head>
+    <body>
+        <div id="box">
+            <input 
+                type="button" 
+                v-for="item,i in list" 
+                v-model="item.title"
+                :class="{yellow: index === i}"
+                @click="tab(i)"
+            />
+            <div 
+                v-for="item,i in list"
+                :style="style(i)"
+            >{{item.title}}</div>
+        </div>
+        <script>
+            // 需要有一个属性，来记录当前所处在的面板上
+            let data = [
+                {
+                    title:'按钮1'
+                },
+                {
+                    title:'按钮2'
+                },
+                {
+                    title:'按钮3'
+                }
+            ]
+            new Vue({
+                el:'#box',
+                data:{
+                    list : data,
+                    index: 0
+                },
+                methods:{
+                    tab(i){
+                        this.index = i;
+                    },
+                    style(i){
+                        return {display: this.index === i ? 'block' : 'none'}
+                    }
+                }
+            })
+        </script>
+    </body>
+</html>

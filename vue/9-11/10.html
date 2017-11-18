@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="./vue.js"></script>
+    </head>
+    <body>
+        <div id="box">
+            <input type="button" value="按钮" @click="message = '10'" />
+            <span>{{message.split('').reverse().join('')}}</span>
+            <p>{{messageReverse}}</p>
+            
+        </div>
+        <script>  
+            /*
+				尽可能的不要在模板中写过多的逻辑，否则会变的臃肿
+				不得不对数据进行逻辑上的处理
+
+				把逻辑抽离在计算属性中
+			*/          
+            new Vue({
+                el:'#box',
+                data:{
+                    message:'miaovketang'
+                },
+                computed:{// 计算属性 的值是函数的返回值
+                    messageReverse:function(){
+                        console.log(this);  // this => 实例
+                        return this.message.split('').reverse().join('')
+                    }
+                }
+            })
+        </script>
+    </body>
+</html>

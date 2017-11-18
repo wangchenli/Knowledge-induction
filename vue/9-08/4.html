@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="./vue.js"></script>
+    </head>
+    <body>
+        <div id="box">
+            <span>{{abc}}</span>
+            <span>{{miaov}}</span>
+            <span>{{1+1}}</span>
+            <span>{{[1,2,3,4]}}</span>
+            <ul>
+                <li v-for="item,index in list">{{index}}:{{item}}</li>
+            </ul>
+        </div>
+        <script>
+            let message = 'hello,vue';
+            new Vue({
+                el:'#box',
+                data:{
+                    abc: 'lalala',
+                    miaov: message,
+                    list:[11,22,33,44]
+                }
+            })
+        </script>
+    </body>
+</html>

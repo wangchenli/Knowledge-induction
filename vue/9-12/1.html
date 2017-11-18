@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+        <div id="box">
+            <hahaha></hahaha>
+            <hahaha></hahaha>
+            <hahaha></hahaha>
+        </div>
+        <script src="vue.js"></script>
+        <script>
+            Vue.component('hahaha',{
+                data:function(){
+                    return {
+                        title:'lalalala'
+                    }
+                },
+                template:`
+                    <div>
+                        <h2>{{title}}</h2>  
+                        <ul>
+                            <li>123</li>    
+                            <li>123</li>    
+                            <li>123</li>    
+                        </ul>  
+                    </div>
+                `
+            })
+            new Vue({
+                el:'#box'
+            })
+        </script>
+    </body>
+</html>

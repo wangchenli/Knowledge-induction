@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="./vue.js"></script>
+    </head>
+    <body>
+        <div id="box">
+            <input type="button" value="切换元素" @click="tab = !tab" />
+            <div v-show="tab">切换我吧v-show</div>
+            <div v-if="tab">切换我吧v-if</div>
+        </div>
+        <script>
+            /*
+				v-show   控制元素的显示和隐藏  频繁切换用v-show
+				v-if     控制是否渲染在页面中  在页面中初始进来判断需不需要渲染某块结构 v-if
+			*/
+            new Vue({
+                el:'#box',
+                data:{
+                    tab: true
+                }
+            })
+        </script>
+    </body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+			.dialog {
+				width: 300px;
+				border: 1px solid #000;
+			}
+		</style>
+        <script src="vue.js"></script>
+    </head>
+    <body>
+        <div id="box">
+            <div ref="test1" >控制我隐藏</div>
+            <custom 
+                title="警告" 
+                :num="n" 
+                ok="确定" 
+                cancel="取消"
+                @sure="hiddenListener"
+            ></custom>
+            <br>
+            <hr>
+            <br>
+            <custom-button ></custom-button>
+        </div>
+        <script>
+            Vue.component('custom',{
+                props:{
+                    title:{
+                        type:String,
+                        default:'标题'
+                    },
+                    ok:{
+                        type:String,
+                        required:true
+                    },
+                    cancel:{
+                        type:String,
+                        required:true
+                    },
+                    num:{                        
+                        validator(value){// 自定义验证规则
+                            console.log(value)
+                            return value < 5;
+                        }
+                    }
+                },
+                template:`
+                    <div class="dialog">
+                        <h2>{{title}}</h2>
+                        <div class="content">
+                            我是内容
+                        </div>
+                        <div class="footer">
+                            <p>{{num}}</p>
+                            <button>{{cancel}}</button>
+                            <button @click="hidden">{{ok}}</button>
+                        </div>
+                    </div>
+                `,
+                methods:{
+                    hidden(){
+                        this.$emit('sure')
+                    }
+                }
+            })
+            Vue.component('custom-button',{
+                template:`
+                    <div>
+                        <div ref="test2">控制背景颜色</div>
+                        <custom @sure="styleFn" ok="下载" cancel="卸载"></custom>
+                    </div>
+                `,
+                methods:{
+                    styleFn(){
+                        this.$refs.test2.style.background = 'pink';
+                    }
+                }
+            })
+            new Vue({
+                el: '#box',
+                data:{
+                    n:"0"
+                },
+                methods:{
+                    hiddenListener(){
+                        this.$refs.test1.style.display = 'none';
+                    }
+                }
+            })
+        </script>
+    </body>
+</html>

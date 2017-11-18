@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            .yellow{
+                font-size:50px;
+                background: yellow;
+            }
+        </style>
+        <script src="./vue.js"></script>
+    </head>
+    <body>
+        <div id="box">
+            <input type="button" value="按钮" @click="changeStyle" />
+            <div style="background:red;" :style="s">hello</div>
+            <hr>
+            <div :style="{width:width,background:'pink'}">hello</div>
+        </div>
+        <script>
+            /*
+				在模板中在行间自定义一个ref，就代表这个元素
+
+				在程序中使用this.$refs.名字 就找到元素了
+			*/
+            new Vue({
+                el:'#box',
+                data:{
+                    s:{},
+                    width:'200px'
+                },
+                methods:{
+                    changeStyle(){
+                       this.s = {
+                           width:'100px',
+                           height:'100px'
+                       }
+                       this.width = '500px'
+                    }
+                }
+            })
+        </script>
+    </body>
+</html>

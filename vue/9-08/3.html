@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="./vue.js"></script>
+    </head>
+    <body>
+        <div id="box">
+            <input type="text" id="message" v-model="value" />
+            <input type="button" id="btn" value="提交" @click="add" />
+            <ul id="list">
+                <li v-for="item,index in list">
+                    {{item}}
+                    <input type="button" value="删除" @click="deleteItem(index)" />
+                </li>
+            </ul>
+        </div>
+        <script>
+            let data = ["天气不错","心情不错"];
+            new Vue({
+                el:'#box',
+                data:{
+                    list:data,
+                    value:''
+                },
+                methods:{
+                    add(){
+                        this.list.push(this.value)
+                    },
+                    deleteItem(index){
+                        this.list.splice(index,1)
+                    }
+                }
+                
+            })
+        </script>
+    </body>
+</html>

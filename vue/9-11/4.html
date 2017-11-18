@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="./vue.js"></script>
+    </head>
+    <body>
+        <div id="box">
+            <input type="text" @input="changeFn"/>
+            <p>{{message}}</p>
+
+            <input type="text" v-model="message"/>
+            <p>{{message}}</p>
+        </div>
+        <script>
+            /*
+				v-model
+
+				可交互的元素
+					input select  textarea
+
+				有value这个属性 可以赋值
+				可交互的元素交互之后数据发生变化，页面也要发生变化
+			*/
+            new Vue({
+                el:'#box',
+                data:{
+                    message:'hahaha'
+                },
+                methods:{
+                    changeFn(ev){
+                        this.message = ev.target.value;
+                    }
+                }
+            })
+        </script>
+    </body>
+</html>

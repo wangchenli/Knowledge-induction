@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="./vue.js"></script>
+    </head>
+    <body>
+        <div id="box">
+            <span>{{message}}</span>
+            <ul>
+                <li v-for="item in list">{{item.user}}</li>
+            </ul>
+        </div>
+        <script>
+            /*
+                响应的数据绑定
+					内置是使用Object.defineProperty追踪变化的
+            */
+            // 把vue当成模板引擎来用
+			// 声明式的将数据渲染进 DOM
+			// 不需要关心具体的实现细节，只需要告诉程序怎么做就行了，重心是在业务逻辑上，不是在实现细节上。
+            let vm = new Vue({
+                el:'#box',
+                data:{
+                    message: 'hello',
+                    list:[
+                        {
+                            user:'dajscj'
+                        },
+                        {
+                            user:'231412'
+                        }
+                    ]
+                }
+            })
+            // 把data这个选项中的数据都放在实例上
+            // 以$开头的属性，是vue内置提供，用来区分开发者添加的属性
+            setTimeout(function(){
+                vm.message = 100000;
+            },2000)
+
+            //命令式编程
+            let arr = [1,2,3,4];
+            let newArr = [];
+            for(var i=0;i<arr.length;i++){
+                newArr.push(arr[i]*2)
+            }
+            console.log(newArr)
+            
+            //声明式编程
+            let arr2 = arr.map(function(item){
+                return item*3
+            })
+            console.log(arr2)
+        </script>
+    </body>
+</html>

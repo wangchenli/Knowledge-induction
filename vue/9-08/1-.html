@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="./vue.js"></script>
+    </head>
+    <body>
+        <div id="box">
+            <span>123</span>
+            <span>{{aa}}</span>
+            <input type="button" @click="fn" />
+            <ul id="list">
+                <li v-for="item in list">{{item}}</li>
+            </ul>
+        </div>
+        <script>
+            let message = ['ttt','ghdasjk']
+            new Vue({
+                el:'#box',
+                data:{
+                    aa:22,
+                    list:message
+                },
+                methods:{
+                    fn(){
+                        alert(1)
+                    }
+                }
+            })
+        </script>
+    </body>
+</html>

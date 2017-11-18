@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="./vue.js"></script>
+    </head>
+    <body>
+        <div id="box">
+            <input type="text" v-model="messageReverse"/>
+            {{messageReverse}}
+        </div>
+        <script>  
+            /*
+				尽可能的不要在模板中写过多的逻辑，否则会变的臃肿
+				不得不对数据进行逻辑上的处理
+
+				把逻辑抽离在计算属性中
+			*/          
+            new Vue({
+                el:'#box',
+                data:{
+                    message:''
+                },
+                computed:{// 计算属性 的值是函数的返回值
+                    // messageReverse:function(){// 只写一个函数就是getter
+                    //     return 123
+                    // }
+                    messageReverse:{
+                        get(){
+                            return this.message;
+                        },
+                        set(newValue){
+                            this.message = newValue;
+                        }
+                    }
+                }
+            })
+        </script>
+    </body>
+</html>

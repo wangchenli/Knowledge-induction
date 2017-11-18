@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+    </head>
+    <body>
+        <input type="text" id="message" />
+        <input type="button" id="btn" value="提交" />
+        <ul id="list">
+            <!-- <li></li> -->
+        </ul>
+        <script>
+            let data = ["天气不错","心情不错"];
+            let html = '';
+            for(var i=0;i<data.length;i++){
+                html += `<li>${data[i]}</li>`
+            }
+            list.innerHTML += html;
+            btn.onclick = function(){
+                /*let newLi = document.createElement('li');
+                newLi.innerHTML = message.value;
+                list.appendChild(newLi)
+                data.push(message.value)*/
+
+                data.push(message.value);
+                let html = '';
+                for(var i=0;i<data.length;i++){
+                    html += `<li>${data[i]}</li>`
+                }
+                list.innerHTML = html;
+                
+            }
+        </script>
+    </body>
+</html>

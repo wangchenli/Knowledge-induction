@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="./vue.js"></script>
+    </head>
+    <body>
+        <div id="box">
+            <input type="button" value="改变" @click="message = 123" />
+            <input type="text" v-model="message"/>
+            <input type="text" v-model="list[0].a" />
+        </div>
+        <script>  
+            new Vue({
+                el:'#box',
+                data:{
+                    message:'',
+                    list:[
+                        {
+                            a:1000
+                        }
+                    ]
+                },
+                watch:{// 监控属性发生变化，一旦发生变化立马执行对应的函数
+                    message(){
+                        console.log('change')
+                    },
+                    list:{
+                        deep:true,
+                        handler(){
+                            console.log('listChange')
+                        }
+                    }
+                }
+            })
+        </script>
+    </body>
+</html>

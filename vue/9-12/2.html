@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+        <div id="box">
+            <hahaha></hahaha>
+            <hahaha></hahaha>
+            <hahaha></hahaha>
+        </div>
+        <script src="vue.js"></script>
+        <script>
+            Vue.component('hahaha',{
+                data:function(){
+                    return {
+                        n:0
+                    }
+                },
+                template:`
+                    <input type="button" v-model="n" @click=n++ />
+                `
+            })
+            new Vue({
+                el:'#box'
+            })
+        </script>
+    </body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+			
+		</style>
+        <script src="vue.js"></script>
+    </head>
+    <body>
+        <div id="box">
+            <custom1></custom1>
+            <hr>
+            <custom2></custom1> 
+        </div>
+        <script>
+            var bus = new Vue();
+            Vue.component('custom1',{
+                template : `
+                    <button @click="okHandle">确定</button>
+                `,
+                methods:{
+                    okHandle(){
+                        console.log('我点了确定')
+                        bus.$emit('ok')
+                    }
+                }
+            })
+            Vue.component('custom2',{
+                template : `
+                    <button>监听</button>
+                `,
+                methods:{
+                    okHandle(){
+                        console.log('我监听到你点了确定')
+                    }
+                },
+                mounted(){
+                    bus.$on('ok',this.okHandle)
+                }
+            })
+            new Vue({
+                el : '#box'
+            })
+        </script>
+    </body>
+</html>

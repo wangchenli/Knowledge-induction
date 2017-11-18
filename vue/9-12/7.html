@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+    </head>
+    <body>
+        <div id="box">
+            <custom message="hi,gays" value="111"></custom>
+            <custom message="hahaha" value="222"></custom>
+            <custom message="lalalal" value="333"></custom>
+        </div>
+        <script src="vue.js"></script>
+        <script>
+            Vue.component('custom',{
+                data(){
+                    return {
+                        n:0
+                    }
+                },
+                props:['message','value'],
+                template:`
+                    <div>
+                        <h2>{{value}}</h2>
+                        <ul>
+                            <li>{{message}}</li>
+                            <li>51327962</li>
+                            <li>dfechlkjawdh</li>
+                        </ul>
+                    </div>
+                `
+            })
+            new Vue({
+                el:'#box'
+            })
+        </script>
+    </body>
+</html>

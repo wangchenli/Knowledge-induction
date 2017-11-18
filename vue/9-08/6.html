@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="./vue.js"></script>
+    </head>
+    <body>
+        <div id="box">
+            <input type="button" v-bind:value="abc" />
+            <input type="text" :value="message" />
+        </div>
+        <script>
+            /*
+            在行间中要想自定义属性值解析为写的数据，明确的告诉vue，动态的渲染数据
+
+			v-bind:key="表达式" 简写为 :
+            */
+            new Vue({
+                el:'#box',
+                data:{
+                    abc:'hi',
+                    message:'hahahaha'
+                }
+            })
+        </script>
+    </body>
+</html>

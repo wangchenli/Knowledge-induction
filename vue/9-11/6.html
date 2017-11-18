@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="./vue.js"></script>
+    </head>
+    <body>
+        <div id="box">
+             <input type="text" @keydown.13="addToDo(1,$event)" /> 
+            <input type="text" @keydown.13="addToDo"  />
+        </div>
+        <script>
+         // methods 只有纯粹的数据逻辑，而不是去处理 DOM 事件细节。
+		/*
+			vue中事件触发的时候，可以选择性的传入参数
+			在模板写上函数指向 addTodo(1) 不会直接执行，而是在触发事件执行，并且传入了参数1
+
+			写函数指执行，拿到事件对象 $event
+
+			不写函数执行 函数的第一个参数依然是事件对象
+		*/
+            new Vue({
+                el:'#box',
+                data:{
+                    addToDo(n,ev){
+                        console.log(n)
+                        console.log('我触发了'+n)
+                    }
+                }
+            })
+        </script>
+    </body>
+</html>

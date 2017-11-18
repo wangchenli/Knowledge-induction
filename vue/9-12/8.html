@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+    </head>
+    <body>
+        <div id="box">
+            <custom title="体育" :list="list"></custom>
+            <custom title="娱乐"></custom>
+            <hr>
+            <aa></aa>
+        </div>
+        <script src="vue.js"></script>
+        <script>
+            Vue.component('custom',{
+                data(){
+                    return {
+                        //title:'新闻'
+                    }
+                },
+                props:['title','list'],
+                template:`
+                    <div>
+                        <h2>{{title}}</h2>
+                        <ul>
+                            <li v-for="item in list">{{item}}</li>
+                            
+                        </ul>
+                        <aa></aa>
+                    </div>
+                `,
+                components:{
+                    'aa':{
+                        template:   `
+                            <p>hello</p>
+                        `
+                    }
+                }
+            })
+            // Vue.component('aa',{
+            //     template:   `
+            //         <p>hello</p>
+            //     `
+            // })
+            new Vue({
+                el:'#box',
+                data:{
+                    list:[1,2,3]
+                }
+            })
+        </script>
+    </body>
+</html>

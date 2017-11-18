@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            .yellow{
+                font-size:50px;
+                background: yellow;
+            }
+        </style>
+        <script src="./vue.js"></script>
+    </head>
+    <body>
+        <div id="box">
+            <input type="button" value="按钮" @click="changeStyle" />
+            <div :class="{yellow:true}">hello</div>
+            <div :class="{yellow:isColor}">hello</div>
+        </div>
+        <script>
+            /*
+				在模板中在行间自定义一个ref，就代表这个元素
+				在程序中使用this.$refs.名字 就找到元素了
+
+                :class="{yellow:isColor}"
+					对象中key为class名字
+					value值为表达式，表达式的结果成立的话，就把class添加到元素身上
+					不成立不添加
+			*/
+            new Vue({
+                el:'#box',
+                data:{
+                    isColor:false
+                },
+                methods:{
+                    changeStyle(){
+                       this.isColor = !this.isColor
+                    }
+                }
+            })
+        </script>
+    </body>
+</html>

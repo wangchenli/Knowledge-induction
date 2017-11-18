@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="./vue.js"></script>
+    </head>
+    <body>
+        <div id="box">
+            <input type="button" :value="abc" v-on:click="message = 'one'"/>
+            <input type="button" :value="message" v-on:click="fn"/>
+            <!-- {{fn()}} -->
+            <p>{{message}}</p>
+        </div>
+        <script>
+            let a = new Vue({
+                el:'#box',
+                data:{
+                    abc: 'hi',
+                    message: 'lalala'
+                },
+                methods:{
+                    fn(){
+                        // alert(1)
+                        // return '函数返回值'
+                        this.message = 'two';
+                        console.log(this) //this指向new vue创建的实例,不指向触发事件的元素
+
+                    }
+                }
+            })
+            console.log(a)
+        </script>
+    </body>
+</html>

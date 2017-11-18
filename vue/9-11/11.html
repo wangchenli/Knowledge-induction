@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="./vue.js"></script>
+    </head>
+    <body>
+        <div id="box">
+            <input type="text" v-model="message"/>
+            <p>{{message.length > 5 ? message.split('').reverse().join('') : 'please write message'}}</p>
+            <p>{{messageReverse}}</p>
+            <p>{{messageReverse}}</p>
+            <p>{{messageReverse}}</p>
+            <p>{{messageReverse}}</p>
+        </div>
+        <script>  
+            /*
+				尽可能的不要在模板中写过多的逻辑，否则会变的臃肿
+				不得不对数据进行逻辑上的处理
+
+				把逻辑抽离在计算属性中
+			*/          
+            new Vue({
+                el:'#box',
+                data:{
+                    message:''
+                },
+                computed:{// 计算属性 的值是函数的返回值
+                    messageReverse:function(){
+                        // 这里面用了data中的值，data中的值发生变化，那么计算属性也会发生变化，也就是说计算属性的值依赖于data中的值
+                        return this.message.length > 5 ? this.message.split('').reverse().join('') : 'please write message'
+                    }
+                }
+            })
+        </script>
+    </body>
+</html>

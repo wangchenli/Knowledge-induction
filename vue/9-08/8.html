@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="./vue.js"></script>
+    </head>
+    <body>
+        <div id="box">
+            <input type="button" value="添加" @click="fn" />
+            <ul>
+                <li v-for="item in list">{{item}}</li>
+            </ul>
+        </div>
+        <script>
+            new Vue({
+                el:'#box',
+                data:{
+                    list:[1,2,3]
+                },
+                methods:{
+                    fn(){
+                        this.list.push(1000)
+                    }
+                }
+            })
+        </script>
+    </body>
+</html>

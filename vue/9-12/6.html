@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+    </head>
+    <body>
+        <div id="box">
+           <haha></haha>
+           <haha></haha>
+        </div>
+        <script src="vue.js"></script>
+        <script>
+            Vue.component('haha',{
+                data(){// 必须是函数，同时这个函数返回一个对象
+                    return {
+                        title:'hello'
+                    }
+                },
+                template:`
+                    <div>
+                        <h2>{{title}}</h2>
+                        <ul>
+                            <li>123</li>
+                            <li>123</li>
+                            <li>123</li>
+                        </ul>
+                    </div>
+                `
+            })
+            new Vue({
+                el: '#box'
+            })
+        </script>
+    </body>
+</html>

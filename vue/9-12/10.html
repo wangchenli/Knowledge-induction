@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+    </head>
+    <body>
+        <div id="box">
+            <input type="button" value="改变" @click="message = 'hi'" />
+            {{message}}
+            <hr>
+            <custom :aa="message" @miaov="changeMessageListener"></custom>
+            <div>
+                <custom :aa="message"></custom>
+            </div>
+        </div>
+        <script src="vue.js"></script>
+        <script>
+            Vue.component('custom',{
+                data(){
+                    return {
+                        title:'子组件',
+                        m: this.aa// 初始值是父组件传递过来的，第一次值已经确定，确定之后，父组件改变了mes值，m的值不会发生变话，因为不会追踪变化
+                    }
+                },
+                computed:{
+                    n(){
+                        return this.aa;
+                    }
+                },
+                props:['aa'],
+                template:`
+                    <div>
+                        <input type="button" v-model="title" @click="changeMessage" />
+                        <p>{{n}}</p>
+                    </div>
+                `,
+                methods:{
+                    changeMessage(){
+                        //this=> 所在组件的实例
+                        // 发布一个事件
+                        this.$emit('miaov','ketang')
+                    }
+                }
+            })
+            new Vue({
+                el:'#box',
+                data:{
+                    message:'hello'
+                },
+                methods:{
+                    changeMessageListener(value){
+                        this.message = value;
+                    }
+                }
+            })
+        </script>
+    </body>
+</html>
