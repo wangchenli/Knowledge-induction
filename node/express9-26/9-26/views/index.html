@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./css/css.css">
+     <!-- <script src="./js/index.js"></script>  -->
+    <script src="./js/jquery-3.2.1.js"></script>
+
+    node_modules
+  </head>
+  <body>
+    <a href="/miaov">miaov</a>
+    <a href="/ketang">ketang</a>
+
+    首页
+
+    <input type="button" value="get数据" id="getBtn" />
+    <input type="button" value="post数据" id="postBtn" />
+    <form method="post" action="/upload" enctype='multipart/form-data'>
+			<input type="file" name="miaov">
+			<input type="submit"  value="上传" />
+		</form>
+    <hr/>
+    <h2>信息</h2>
+    <ul>
+      <li>{{user.name}}</li>
+      <li>{{user.sex}}</li>
+      <li>{{user.age}}</li>
+    </ul>
+    {% for item,index in list %}
+      <a href="">{{item}}</a>
+      {% if index === 1 %}
+        <p>hello{{index}}</p>
+      {% endif %}
+    {% endfor %}
+
+    <script>
+      //ajax向后端发送请求
+      $('#getBtn').click(function(){
+        $.ajax({
+          url:'/api/users?random='+Math.random()+"&userName=leo",
+          method:'get',
+          success(data){
+            // 后端发送的是json的格式，jq会帮你转成对象的形式
+            console.log(typeof data) //Object
+          }
+        })
+      })
+      $('#postBtn').click(function(){
+        $.ajax({
+          url:'/api/post-users',
+          method:'post',
+          data:{
+            userName: 'leo'
+          },
+          success(data){
+            // 后端发送的是json的格式，jq会帮你转成对象的形式
+            console.log(typeof data)
+          }
+        })
+      })
+    </script>
+  </body>
+</html>
