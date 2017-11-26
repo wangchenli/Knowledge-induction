@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>v-text实例</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="../assets/js/vue.js"></script>
+  </head>
+  <body>
+    <h1>v-text & v-html</h1>
+    </hr>  
+    <div id="app">
+      <span>{{message}}</span><br>
+      <span v-text="message"></span><br>
+      <div v-html="html"></div>
+    </div>
+    <script>
+      var app = new Vue({
+        el:'#app',
+        data:{
+          message:'hello,girls!',
+          html: '<h2>hi,~~~~~</h2>'
+        },
+        computed:{
+          
+        }
+      });
+      
+    </script>
+  </body>
+</html>

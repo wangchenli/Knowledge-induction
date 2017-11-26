@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>v-on实例</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="../assets/js/vue.js"></script>
+  </head>
+  <body>
+    <h1>v-on 实例</h1>
+    </hr>  
+    <div id="app">
+      分数：{{num}}<br>
+      <hr>
+      <button @click="addNum">加分</button>
+      <button @click="removeNum">减分</button>
+      <br>
+      <input type="text" v-model="n" @keyup.13="toEnter" />
+    </div>
+    <script>
+      var app = new Vue({
+        el:'#app',
+        data:{
+          num:0,
+          n: 1
+        },
+        methods:{
+          addNum(){
+            this.num++
+          },
+          removeNum(){
+            this.num--
+          },
+          toEnter(){
+            this.num = this.num + (+this.n); 
+          }
+        }
+      });
+      
+    </script>
+  </body>
+</html>
