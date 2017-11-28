@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>vue.extend 扩展实例构造器</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="../assets/js/vue.js"></script>
+  </head>
+  <body>
+    <h1>vue.extend 扩展实例构造器</h1>
+    </hr>  
+    <div id="hello"></div>
+    <hello></hello>
+    
+    <script>
+      let helloExtend = Vue.extend({
+        template: "<p><a :href='hrefUrl' target='_blank'>{{helloName}}</a></p>",
+        data(){
+          return{
+            helloName:'hello world',
+            hrefUrl:'http://baidu.com'
+          }
+        }
+      })
+      new helloExtend().$mount('#hello')
+      new helloExtend().$mount('hello')
+    </script>
+  </body>
+</html>

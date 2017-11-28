@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>propsData Option  全局扩展的数据传递</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="../assets/js/vue.js"></script>
+  </head>
+  <body>
+    <h1>propsData Option  全局扩展的数据传递</h1>
+    </hr>  
+    <header></header>
+    <script>
+      let head = Vue.extend({
+        template:`<div>{{message}}-------{{a}}</div>`,
+        data(){
+          return{
+            message:'hello ~~~~'
+          }
+        },
+        props:['a']
+      })
+      new head({propsData:{a:2222}}).$mount('header')
+    </script>
+  </body>
+</html>

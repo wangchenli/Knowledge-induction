@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Component 初识组件</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="../assets/js/vue.js"></script>
+  </head>
+  <body>
+    <h1>Component 初识组件</h1>
+    </hr>  
+    <div id="app">
+      <!-- <hello><hello> -->
+      <hi></hi>
+      <aaa from="my home"></aaa>
+    </div>
+
+    <script>
+      
+      // Vue.component('hello',{
+      //   template:`<h2 style="color:pink;">hello world!(我是全局组件)</h2>`
+      // })
+      var app = new Vue({
+        el:'#app',
+        components:{
+          "hi":{
+            template:`<h2 style="color:yellow;">hi,~~!(我是局部组件)</h2>`
+          },
+          "aaa":{
+            template:`<h2 style="color:lightcoral;">welcome to {{from}}</h2>`,
+            props:['from']
+          }
+
+        }
+      })
+    </script>
+  </body>
+</html>
