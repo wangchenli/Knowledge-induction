@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Watch 选项 监控数据</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="../assets/js/vue.js"></script>
+  </head>
+  <body>
+    <h1>Watch 选项 监控数据</h1>
+    </hr>  
+    <div id="app">
+      <p>今日温度：{{wendu}}</p>
+      <p>建议穿衣：{{yifu}}</p>
+      <p>
+        <button @click="add()">增加温度</button>
+        <button @click="reduce()">降低温度</button>
+      </p>
+    </div>
+    <script>
+      let arr = ['短袖','夹克','棉衣']
+      let app = new Vue({
+        el:'#app',
+        data:{
+          wendu:12,
+          yifu:arr[1]
+        },
+        methods:{
+          add(){
+            this.wendu+=5
+          },
+          reduce(){
+            this.wendu-=5
+          }
+        },
+        watch:{
+          wendu:function(newValue,oldValue){
+            if(newValue > 26){
+              this.yifu = arr[0]
+            }else if(newValue < 26 && newValue > 0){
+              this.yifu = arr[1]
+            }else{
+              this.yifu = arr[2]
+            }
+          }
+        }        
+      })
+      /*
+      用实例属性写watch监控
+          有些时候我们会用实例属性的形式来写watch监控。也就是把我们watch卸载构造器的外部，
+      这样的好处就是降低我们程序的耦合度，使程序变的灵活。
+          app.$watch('xxx',function(){})
+
+      不应该使用箭头函数来定义 watcher 函数 
+          理由是箭头函数绑定了父级作用域的上下文，所以 this 将不会按照期望指向 Vue 实例.
+      */
+      app.$watch('wendu',function(newValue,oldValue){
+          if(newValue > 26){
+            this.yifu = arr[0]
+          }else if(newValue < 26 && newValue > 0){
+            this.yifu = arr[1]
+          }else{
+            this.yifu = arr[2]
+          }
+      })
+    </script>
+  </body>
+</html>

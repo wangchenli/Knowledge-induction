@@ -207,7 +207,7 @@
 	     `
 	})
 
-####写在<template>标签里的模板
+####写在< template >标签里的模板
 
 	<template id="demo2">
              <h2 style="color:red">我是template标签模板</h2>
@@ -365,3 +365,159 @@
           }
         }
       })
+
+##3.选项
+###3.1Watch 选项 监控数据
+>不应该使用箭头函数来定义 watcher 函数 
+
+*	理由是箭头函数绑定了父级作用域的上下文，所以 this 将不会按照期望指向 Vue 实例.
+
+>**HTML代码**
+
+	<div id="app">
+      <p>今日温度：{{wendu}}</p>
+      <p>建议穿衣：{{yifu}}</p>
+      <p>
+        <button @click="add()">增加温度</button>
+        <button @click="reduce()">降低温度</button>
+      </p>
+    </div>
+
+>**JS代码**
+
+	let arr = ['短袖','夹克','棉衣']
+      let app = new Vue({
+        el:'#app',
+        data:{
+          wendu:12,
+          yifu:arr[1]
+        },
+        methods:{
+          add(){
+            this.wendu+=5
+          },
+          reduce(){
+            this.wendu-=5
+          }
+        },
+        watch:{
+          wendu:function(newValue,oldValue){
+            if(newValue > 26){
+              this.yifu = arr[0]
+            }else if(newValue < 26 && newValue > 0){
+              this.yifu = arr[1]
+            }else{
+              this.yifu = arr[2]
+            }
+          }
+        }        
+      })
+
+####用实例属性写watch监控
+>app.$watch( 'xxx',function ( ){ } )
+
+*	有些时候我们会用实例属性的形式来写watch监控。也就是把我们watch卸载构造器的外部,这样的好处就是降低我们程序的耦合度，使程序变的灵活。
+
+###3.2Mixins 混入选项操作
+####谨慎使用全局混合对象，因为会影响到每个单独创建的 Vue 实例 (包括第三方模板)。大多数情况下，只应当应用于自定义选项，就像上面示例一样。也可以将其用作 Plugins 以避免产生重复应用
+
+####Mixins一般有两种用途
+>1、在你已经写好了构造器后，需要增加方法或者临时的活动时使用的方法，这时用混入会减少源代码的污染。
+
+>2、很多地方都会用到的公用方法，用混入的方法可以减少代码量，实现代码重用。
+          
+>**HTML代码**
+
+	<div id="app">
+      {{num}}
+      <p>
+        <button @click="add()">ADD</button>
+      </p>
+    </div>
+
+>**JS代码**
+
+	  let numC = {
+        updated(){
+          console.log('我是构造器中的混入，数据发生变化---------'+this.num)
+        }
+      }
+      Vue.mixin({
+        updated:function(){
+            console.log('我是全局被混入的-----------'+this.num);
+        }
+      })
+      let app = new Vue({
+        el:'#app',
+        data:{
+          num:1
+        },
+        methods:{
+          add(){
+            this.num++
+          }
+        },
+        mixins:[numC], //mixins注册numC，构造器中的混入
+        updated(){
+          console.log('我是原生的，数据发生变化---------'+this.num)
+        }
+     })
+
+
+####全局API混入方式（ mixin ）
+
+	Vue.mixin({
+        updated:function(){
+            console.log('我是全局被混入的-----------'+this.num);
+        }
+    })
+
+####mixins的调用顺序
+
+>**全局混入的执行顺序要前于混入和构造器里的方法。**
+
+>**从执行的先后顺序来说，都是混入的先执行，然后构造器里的再执行，需要注意的是，这并不是方法的覆盖，而是被执行了两边。**
+
+###3.3Extends Option  扩展选项
+>**HTML代码**
+
+	<div id="app">
+      {{num}}
+      ${num}
+      <p>
+        <button @click="add()">ADD</button>
+      </p>
+    </div>
+
+>**JS代码**
+
+	  let extendObj = {
+        updated(){
+          console.log('我是被扩展出来的')
+        },
+        methods:{
+          add(){
+            this.num++
+            console.log('我是extend的方法')
+          }
+        }
+      }
+      let app = new Vue({
+        el:'#app',
+        data:{
+          num:1
+        },
+        methods:{
+          add(){
+            this.num++
+            console.log('我是原生的方法')
+          }
+        },
+        extends:extendObj,
+        delimiters:['${','}']
+      })
+
+###3.4delimiters 选项
+**delimiters:['${', '}']**
+
+>delimiters的作用是改变我们插值的符号。Vue默认的插值是双大括号{{}}。但有时我们会有需求更改这个插值的形式。

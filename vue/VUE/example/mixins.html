@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Mixins 混入选项操作</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="../assets/js/vue.js"></script>
+  </head>
+  <body>
+    <h1>Mixins 混入选项操作</h1>
+    </hr>
+    <div id="app">
+      {{num}}
+      <p>
+        <button @click="add()">ADD</button>
+      </p>
+    </div>
+    <script>
+      let numC = {
+        updated(){
+          console.log('我是构造器中的混入，数据发生变化---------'+this.num)
+        }
+      }
+      Vue.mixin({
+        updated:function(){
+            console.log('我是全局被混入的-----------'+this.num);
+        }
+      })
+      let app = new Vue({
+        el:'#app',
+        data:{
+          num:1
+        },
+        methods:{
+          add(){
+            this.num++
+          }
+        },
+        mixins:[numC],
+        updated(){
+          console.log('我是原生的，数据发生变化---------'+this.num)
+        }
+      })
+    </script>
+  </body>
+</html>
