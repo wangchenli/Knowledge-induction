@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+      .box div{
+        width: 200px;
+        height: 200px;
+        border: 1px pink solid;
+        display: none;
+      }
+      .pink{
+        background:pink;
+      }
+    </style>
+    <script src="./jquery-3.2.0.js"></script>
+  </head>
+  <body>
+    <div class="box">
+      <button class="pink">div1</button>
+      <button>div2</button>
+      <button>div3</button>
+      <div style="display:block;">div1</div>
+      <div>div2</div>
+      <div>div3</div>
+    </div>  
+    <script>
+      $(function(){
+        /*$('button').click(function(){
+          $('button').removeClass('pink');
+          $(this).addClass('pink');
+          let i = $('button').index(this);
+          console.log(i)
+          $('.box div').hide();
+          $('.box div').eq(i).show()
+        })*/
+
+        $('button').each(function(index,ele){
+          console.log(index,ele)
+          $(ele).attr('index',index)
+          $(ele).click(function(){
+            $('button').removeClass('pink');
+            $(this).addClass('pink')
+            $('.box div').hide();
+            $('.box div').eq($(this).attr('index')).show()
+          })
+        })
+
+
+      })
+    </script>
+  </body>
+</html>
