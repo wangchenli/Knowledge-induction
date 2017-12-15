@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+      
+    </style>
+    <script src="./jquery-3.2.0.js"></script>
+  </head>
+  <body>
+    <div class="box">div1</div>
+    <div>div2</div>
+    <script>
+      $(function(){
+        // $('div').filter('.box').css('background','pink')
+        $('div').not('.box').css('background','pink')
+        
+      })
+    </script>
+  </body>
+</html>
