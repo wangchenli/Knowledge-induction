@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+      *{
+        margin: 0;
+        padding: 0;
+      }
+      #login{
+        width: 300px;
+        height: 300px;
+        position: absolute;
+        border: 1px solid indianred;
+      }
+      .close{
+        position: absolute;
+        right: 0;
+        top: 0;
+      }
+    </style>
+    <script src="./jquery-3.2.0.js"></script>
+  </head>
+  <body style="height:1500px;">
+    <input type="button" value="input1" class="input1">
+    
+    <script>
+      $(function(){
+        
+        
+        $('.input1').click(function(){
+          let div = $('<div id="login"><button class="close">X</button></div>')
+
+
+          $('body').append(div)
+          div.css('left',($(window).width()-div.outerWidth())/2);
+          div.css('top',($(window).height()-div.outerHeight())/2);
+
+          $(window).on('scroll resize',function(){
+            div.css('left',($(window).width()-div.outerWidth())/2);
+            div.css('top',($(window).height()-div.outerHeight())/2 + $(window).scrollTop());
+          })
+
+          $('.close').click(function(){
+            div.remove();
+          })
+        })
+      })
+    </script>
+  </body>
+</html>

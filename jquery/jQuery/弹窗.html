@@ -1,0 +1,147 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title></title>
+  <style type="text/css">
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      color: #333;
+      font: 0.9em/1.6em Microsoft Yahei;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    .open {
+      margin: 35px auto;
+      text-align: center;
+    }
+
+    #popDiv {
+      position: fixed;
+      display: none;
+      width: 750px;
+      border: 4px solid #f90;
+      background: #fff;
+    }
+
+    .list {
+      padding: 5px;
+      overflow: hidden;
+      zoom: 1;
+    }
+
+    .list li {
+      float: left;
+      margin: 3px 10px;
+      cursor: pointer;
+    }
+
+    .list li.hover {
+      font-weight: bold;
+    }
+
+    #closePop {
+      padding: 5px;
+      background: #F00;
+      color: #FFF;
+      cursor: pointer;
+    }
+
+    #del {
+      padding: 5px;
+      background: #333;
+      color: #FFF;
+      cursor: pointer;
+    }
+  </style>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $('#openPop').live('click', function () {
+        place('#popDiv');
+        return false;
+      });
+      $('#closePop').click(function () {
+        $('#popDiv').hide();
+      });
+      //删除数据
+      $('#del').click(function () {
+        var lis = $(this).siblings('ul').find('li');
+        var liLength = lis.length - 9;
+        var delLis = $(this).siblings('ul').find('li:gt(' + liLength + ')');
+        delLis.remove();
+        var parents = $(this).parents();
+        for (var i = 0; i < parents.length; i++) {
+          if (parents[i].id == 'popDiv') {
+            var popId = parents[i].id;
+          }
+        }
+        place('#' + popId); //删除后再定位
+      });
+      //增加数据
+      $('.list li').live('click', function () {
+        $(this).addClass('hover');
+        var cloneLis = $(this).siblings('li:lt(5)').clone();
+        $('.list').append(cloneLis);
+        var parents = $(this).parents();
+        for (var i = 0; i < parents.length; i++) {
+          if (parents[i].id == 'popDiv') {
+            var popId = parents[i].id;
+          }
+        }
+        place('#' + popId); //增加后再定位
+      });
+      //定位
+      function place(id) {
+        var winW = $(window).width();
+        var winH = $(window).height();
+        var popW = $(id).width();
+        var popH = $(id).height();
+        console.log('弹出框的高度为' + popH);
+        var popInnerH = $(id).find('.popInner').height();
+        var left = (winW - popW) / 2;
+        var top = (winH - popH) / 2;
+        $(id).css({ 'display': 'block', 'left': left + 'px', 'top': top + 'px' });
+        if (popInnerH < (winH - 40)) {
+          $(id).css({ 'top': top + 'px', 'height': 'auto' });
+          console.log('弹出框的内容器高度为' + popInnerH);
+          console.log('弹出框的top为' + $(id).css('top'));
+        } else if (popInnerH >= (winH - 40)) {
+          $(id).css({ 'top': (winH - (winH - 40)) / 2 + 'px', 'height': (winH - 40) + 'px', 'overflow': 'auto' });
+          console.log('高度溢出时弹出框的内容器高度为' + popInnerH);
+          console.log('高度溢出时弹出框的top为' + $(id).css('top'));
+        }
+      }
+    });
+
+  </script>
+</head>
+
+<body style="height:2000px;">
+  <p class="open"><a href="#" id="openPop">打开弹出框</a></p>
+  <div id="popDiv">
+    <div class="popInner">
+      <div id="closePop">关闭</div>
+      <ul class="list">
+        <li>数据列表数据列表1</li>
+        <li>数据列表数据列表2</li>
+        <li>数据列表数据列表3</li>
+        <li>数据列表数据列表4</li>
+        <li>数据列表数据列表5</li>
+        <li>数据列表数据列表6</li>
+        <li>数据列表数据列表7</li>
+      </ul>
+      <div id="del">删除最后10个</div>
+    </div>
+  </div>
+</body>
+
+</html>
