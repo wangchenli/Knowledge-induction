@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+
+    <!-- IE 运行最新的渲染模式 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- 初始化移动浏览显示  -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>Bootstrap 101 Template</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" >
+    
+    <!-- 以下两个插件用于在IE8以及以下版本浏览器支持HTML5元素和媒体查询，如果不需要用可以移除 -->
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="container">
+      <div class="jumbotron">
+        <h1>Hello, world!</h1>
+        <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
+        <p><a href="#" >Learn more »</a></p>
+      </div>
+      <!--Bootstrap中的标题-->
+      <h1>Bootstrap标题一</h1>
+      <h2>Bootstrap标题二</h2>
+      <h3>Bootstrap标题三</h3>
+      <h4>Bootstrap标题四</h4>
+      <h5>Bootstrap标题五</h5>
+      <h6>Bootstrap标题六</h6>
+
+      <!--Bootstrap中让非标题元素和标题使用相同的样式-->
+      <div class="h1">Bootstrap标题一</div>
+      <div class="h2">Bootstrap标题二</div>
+      <div class="h3">Bootstrap标题三</div>
+      <div class="h4">Bootstrap标题四</div>
+      <div class="h5">Bootstrap标题五</div>
+      <div class="h6">Bootstrap标题六</div>
+      <hr>
+
+
+      <h2 class="text-warning">Bootstrap中使用了<small>标签来制作副标</h2>
+      <h1>Bootstrap标题一   <small>我是副标题</small></h1>
+      <h2>Bootstrap标题二   <small>我是副标题</small></h2>
+      <h3>Bootstrap标题三   <small>我是副标题</small></h3>
+      <h4>Bootstrap标题四   <small>我是副标题</small></h4>
+      <h5>Bootstrap标题五   <small>我是副标题</small></h5>
+      <h6>Bootstrap标题六   <small>我是副标题</small></h6>
+      <hr>
+
+
+      <h2 class="text-warning">强调内容</h2>
+      <p>我是普通文本，我的样子长成这样我是普通文本，我的样子长成这样我是普通文本，</p>
+      <p class="lead">我是特意要突出的文本，我的样子成这样。我是特意要突出的文本，我的样子长成这样。</p>
+      <hr>
+
+    
+
+      <h2 class="text-warning">强调相关的类</h2>
+      <div class="text-muted">.text-muted 效果</div>
+      <div class="text-primary">.text-primary效果</div>
+      <div class="text-success">.text-success效果</div>
+      <div class="text-info">.text-info效果</div>
+      <div class="text-warning">.text-warning效果</div>
+      <div class="text-danger">.text-danger效果</div>
+      <hr>
+
+      
+      <h2 class="text-warning">文本对齐风格</h2>
+      <p class="text-left">我居左</p>
+      <p class="text-center">我居中</p>
+      <p class="text-right">我居右</p>
+      <p class="text-justify">There is clearly a need for CSS to be taken seriously by graphic artists. The Zen Garden aims to excite, inspire, and encourage participation. To begin, view some of the existing designs in the list. Clicking on any one will load the style sheet into this very page. The code remains the same, the only thing that has changed is the external .css file. </p>
+      <hr>
+
+      <h2 class="text-warning">列表--去点列表</h2>
+      <ul>
+        <li>
+        项目列表
+            <ul>
+            <li>带有项目符号</li>
+            <li>带有项目符号</li>
+            </ul>
+        </li>
+        <li>
+        项目列表
+            <ul class="list-unstyled">
+            <li>不带项目符号</li>
+            <li>不带项目符号</li>
+            </ul>
+        </li>
+        <li>项目列表</li>
+      </ul>
+      <hr>
+
+      <h2 class="text-warning">列表--内联列表-------------------------!!!!</h2>
+      <ul class="list-inline">
+        <li>W3cplus</li>
+        <li>Blog</li>
+        <li>CSS3</li>
+        <li>jQuery</li>
+        <li>PHP</li>
+      </ul>
+      <hr>
+
+
+
+      <h2 class="text-warning">列表--水平定义列表</h2>
+      <dl class="dl-horizontal">
+        <dt>W3cplus</dt>
+        <dd>一个致力于推广国内前端行业的技术博客。它以探索为己任，不断活跃在行业技术最前沿，努力提供高质量前端技术博文</dd>
+        <dt>慕课网</dt>
+        <dd>一个专业的，真心实意在做培训的网站</dd>
+        <dt>我来测试一个标题，我来测试一个标题</dt>
+        <dd>我在写一个水平定义列表的效果，我在写一个水平定义列表的效果</dd>
+      </dl>
+      <hr>
+
+
+      <h2 class="text-warning">代码（一）</h2>
+          code风格：
+      <div>Bootstrap的代码风格有三种：<code>&lt;code&gt;</code>、<code>&lt;pre&gt;</code>和<code>&lt;kbd&gt;</code></div>
+      pre风格：
+      <div>
+        <pre>
+          &lt;ul&gt;
+            &lt;li&gt;...&lt;/li&gt;
+            &lt;li&gt;...&lt;/li&gt;
+            &lt;li&gt;...&lt;/li&gt;
+          &lt;/ul&gt;
+        </pre>
+      </div>
+      kbd风格：
+      <div>请输入<kbd>ctrl+c</kbd>来复制代码，然后使用<kbd>ctrl+v</kbd>来粘贴代码</div>
+      <hr>
+
+
+      <h2 class="text-warning">代码（二）</h2>
+      <pre class="pre-scrollable">
+      <ol>
+        <li>....</li>
+        <li>....</li>
+        <li>....</li>
+        <li>....</li>
+        <li>....</li>
+        <li>....</li>
+        <li>....</li>
+        <li>....</li>
+        <li>....</li>
+        <li>....</li>
+        <li>....</li>
+        <li>....</li>
+        <li>....</li>
+        <li>....</li>
+      </ol>
+      <hr>
+
+    </div>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- 如果要使用Bootstrap的js插件，必须先调入jQuery -->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+
+    <!-- 包括所有bootstrap的js插件或者可以根据需要使用的js插件调用　-->
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  </body>
+</html>

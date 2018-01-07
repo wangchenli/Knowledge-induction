@@ -1,0 +1,9 @@
+    
+
+    h1~h3的margin为20px；h4-h6的margin为10px
+
+    定义了6个类名。h1 h2 h3 h4 h5 h6
+
+    大小：h1为36px，依次减6
+
+    Bootstrap为众多开发者考虑的非常周道，通过给无序列表添加一个类名“.list-unstyled”,这样就可以去除默认的列表样式的风格。
