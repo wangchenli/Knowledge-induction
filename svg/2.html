@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
+    
+    #box{
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+    
+    text{
+      
+      font-family: "微软雅黑";
+      color:red;
+    }
+    
+
+    
+    #tankuang{
+      width: 160px;
+      height: 100px;
+      background: lightskyblue;
+      border: 1px solid #000000;
+      position: absolute;
+      left: 0;
+      top: 0;
+      padding: 20px;
+      display: none; 
+    }
+    #tankuang li{
+      height: 30px;
+      line-height: 30px;
+      font-size: 20px;
+      color: lightgoldenrodyellow;
+    }
+  </style>
+</head>
+<body>
+  <div class="bigbox">
+    <div id="box"></div>
+  </div>
+  <div id="tankuang">
+     <h2>hahhah</h2>
+    <ul>
+      <li>11</li>
+      <li>22</li>
+    </ul> 
+  </div>
+  <script src="js/jquery-3.2.0.js"></script>
+  <script src="js/d3.v3.min.js"></script>
+  <script src="js/TweenMax.min.js"></script>
+  <script>
+        let data = [
+          {
+            "id":'wulumuqi',
+            "title":"乌鲁木齐",
+            "cx":"121.3",
+            "cy":"89.3",
+            "r":"1.6"              
+          },
+          {
+            "id":'tulufan',
+            "title":"吐鲁番",
+            "cx":"130.1",
+            "cy":"99.8",
+            "r":"1.0"              
+          },
+          {
+            "id":'shanshan',
+            "title":"鄯善",
+            "cx":"137.2",
+            "cy":"101.1",
+            "r":"0.5"              
+          },
+          {
+            "id":'tuha',
+            "title":"吐哈",
+            "cx":"141.3",
+            "cy":"101.9",
+            "r":"0.5"              
+          },
+          {
+            "id":'hami',
+            "title":"哈密",
+            "cx":"158.9",
+            "cy":"105.2",
+            "r":"0.5"              
+          },
+          {
+            "id":'liuyuan',
+            "title":"柳园",
+            "cx":"165.8",
+            "cy":"113.5",
+            "r":"0.5"              
+          },
+          {
+            "id":'yumen',
+            "title":"玉门",
+            "cx":"182.5",
+            "cy":"133.2",
+            "r":"0.5"              
+          },
+          {
+            "id":'jiayuguan',
+            "title":"嘉峪关",
+            "cx":"187.6",
+            "cy":"139.1",
+            "r":"1.0"              
+          },
+          {
+            "id":'jiuquan',
+            "title":"酒泉",
+            "cx":"190.1",
+            "cy":"140.6",
+            "r":"1.0"              
+          },
+          {
+            "id":'gaotai',
+            "title":"高台",
+            "cx":"194.3",
+            "cy":"143.4",
+            "r":"0.5"              
+          },
+          {
+            "id":'lingze',
+            "title":"临泽",
+            "cx":"199.2",
+            "cy":"146.6",
+            "r":"0.5"              
+          },
+          {
+            "id":'zhangye',
+            "title":"张掖",
+            "cx":"202.6",
+            "cy":"148.8",
+            "r":"1.0"              
+          },
+          {
+            "id":'minle',
+            "title":"民乐",
+            "cx":"204.3",
+            "cy":"154.3",
+            "r":"0.5"              
+          },
+          {
+            "id":'menyuan',
+            "title":"门源",
+            "cx":"207.4",
+            "cy":"164.4",
+            "r":"0.5"              
+          },
+          {
+            "id":'datong',
+            "title":"大通",
+            "cx":"208.5",
+            "cy":"168.0",
+            "r":"0.5"              
+          },
+          {
+            "id":'xining',
+            "title":"西宁",
+            "cx":"209.7",
+            "cy":"172.1",
+            "r":"1.0"              
+          },
+          {
+            "id":'haidong',
+            "title":"海东",
+            "cx":"214.2",
+            "cy":"174.1",
+            "r":"0.5"              
+          },
+          {
+            "id":'ledou',
+            "title":"乐都",
+            "cx":"217.0",
+            "cy":"175.2",
+            "r":"0.5"              
+          },
+          {
+            "id":'minhe',
+            "title":"民和",
+            "cx":"220.0",
+            "cy":"176.5",
+            "r":"0.5"              
+          },
+          {
+            "id":'lanzhou',
+            "title":"兰州",
+            "cx":"225.8",
+            "cy":"178.7",
+            "r":"1.5"              
+          }
+        ]
+        $('.bigbox').css('width',$(window).width())
+        $('.bigbox').css('height',$(window).height())
+        var width = $("#box").parent().width();
+        var height = $("#box").parent().height();
+        var bg_width = 2105;
+        var bg_height = 1005;
+        var ratio_init = width / bg_width;
+        console.log(ratio_init)
+
+        var zoom = d3.behavior.zoom()
+          .scaleExtent([ratio_init, 6])
+          .on("zoom", zoomed);
+
+        var drag = d3.behavior.drag()
+          .origin(function (d) {
+            return d;
+          })
+          .on("dragstart", dragstarted)
+          .on("drag", dragged)
+          .on("dragend", dragended);
+
+
+        var _svg = d3.select("#box").append("svg")
+          .attr("width", width)
+          .attr("height", height)
+          .call(zoom)
+          ;
+        var container = _svg.append("g");
+          container
+            .attr('id','svg_box')
+            .attr("class", "all")
+            .append("image")
+            .attr('xlink:href','img/map.png')
+            .attr("width", bg_width)
+            .attr("height", bg_height);
+          
+          container
+            .attr("class", "all")
+            .append("g")
+            .attr("transform","translate(600, 200)")
+            .append("polyline")
+            .attr("x1","100")
+            .attr("points","121.3,89.3,130.1,99.8,137.2,101.1,141.3,101.9,158.9,105.2,165.8,113.5,182.5,133.2,187.6,139.1,190.1,140.6,194.3,143.4,199.2,146.6,202.6,148.8,204.3,154.3,207.4,164.4,208.5,168.0,209.7,172.1,214.2,174.1,217.0,175.2,220.0,176.5,225.8,178.7")
+            .attr("fill","none")
+            .attr("stroke", "#000000")
+            .attr("stroke-width", "0.5")  
+            .attr("transform", "scale(1.5)")  
+
+          
+         
+          
+        var gs = _svg.select("#svg_box")      
+          .append("g")
+          .attr("transform","translate(600, 200)")
+        var circles = gs.selectAll("circle")
+          .data(data)
+          .enter()
+          .append("circle");
+        circles
+          .attr("cx", function (d, i) {
+            return d.cx
+          })
+          .attr("id", function (d, i) {
+            return d.id
+          })
+          .attr("cy", function (d, i) {
+            return d.cy
+          })
+          .attr("r", function (d) {
+            return d.r;
+          })
+          .attr("fill", "#ffffff")  
+          .attr("stroke", "red")  
+          .attr("stroke-width", "0.2")  
+          .attr("transform", "scale(1.5)")
+        
+        var texts = gs.selectAll("text")
+          .data(data)
+          .enter()
+          .append("text").text(function(d,i){
+            return d.title
+          }) ;
+        texts
+          .attr("x", function (d, i) {
+            return +d.cx-5
+          })
+          .attr("id", function (d, i) {
+            return d.id
+          })
+          .attr("y", function (d, i) {
+            return +d.cy+4
+          })
+          .attr('font-size','3')
+          .attr('size','3')
+          .attr('text-anchor','middle')
+          .attr("transform", "scale(1.5)")
+
+
+
+
+        zoom.scale(ratio_init);
+        zoom.event(_svg.transition().duration(200));
+        
+
+
+        function dottype(d) {
+          d.x = +d.x;
+          d.y = +d.y;
+          d.id = +d.id;
+          return d;
+        }
+
+        function zoomed() {
+          // $('.tip i').text((d3.event.scale).toFixed(2));
+          container.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
+        }
+
+        function dragstarted(d) {
+          d3.event.sourceEvent.stopPropagation();
+          d3.select(this).classed("dragging", true);
+        }
+
+        function dragged(d) {
+          d3.select(this).attr("cx", d.x = d3.event.x).attr("cy", d.y = d3.event.y);
+        }
+
+        function dragended(d) {
+          d3.select(this).classed("dragging", false);
+
+        }
+
+        $(function(){
+          //鼠标滑过提示的信息
+          $.each(data,function(n,item){ 
+            console.log(typeof item.id)           
+            aa('#'+item.id)
+          })
+          function aa(ele){
+            $(ele).on('mouseover',function(ev){
+              setTimeout(function(){
+                $('#tankuang').show(100)
+              })
+              $('#tankuang').html(`
+                <h2>${$(this).parent().next().find('text').text()}</h2>
+                <ul>
+                  <li>11</li>
+                  <li>22</li>
+                </ul>
+              `)
+
+              $('#tankuang').css('left',$(this).offset().left+10+'px')
+              $('#tankuang').css('top',$(this).offset().top - $('#tankuang').outerHeight()+'px')
+
+
+              
+            })
+            $(ele).on('mouseout',function(ev){
+              $('#tankuang').hide()
+              $('#tankuang').html()
+              $('#tankuang').css('left',0)
+              $('#tankuang').css('top',0)
+            })
+          }
+        })
+        
+  </script>
+</body>
+</html>

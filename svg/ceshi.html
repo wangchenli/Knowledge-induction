@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>testD3-7-drawSVG.html</title>
+  <script src="js/d3.v3.min.js"></script>
+  <style type="text/css">
+
+  </style>
+</head>
+
+<body>
+  <script type="text/javascript">
+    // SVG尺寸
+    var w = 500;
+    var h = 50;
+
+    // 数据
+    var dataset = [
+          {
+            "id":'wulumuqi',
+            "title":"乌鲁木齐",
+            "cx":"121.3",
+            "cy":"89.3",
+            "r":"10"              
+          },
+          {
+            "id":'tulufan',
+            "title":"吐鲁番",
+            "cx":"130.1",
+            "cy":"99.8",
+            "r":"5"              
+          }
+        ]
+
+    // 创建SVG容器
+    var svg = d3.select("body")
+      .append("svg")
+      .attr("width", 1000)
+      .attr("height", 500);
+
+    // 创建圆
+    var circles = svg.selectAll("circle")
+      .data(dataset)
+      .enter()
+      .append("circle");
+
+    // 根据数据设置每个圆的属性
+    circles
+        .attr("cx", function (d, i) {
+        console.log(d,i)
+        return d.cx
+      })
+      .attr("cy", function (d, i) {
+        console.log(d,i)
+        return d.cy
+      })
+      .attr("r", function (d) {
+        return d.r;
+      })
+      .attr('fill','red')
+      .attr('stroke','yellow')
+      .attr('stroke-width','2');
+
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>ECharts map Demo</title>
+        <script src="echarts.js"></script>
+        <script src="china.js"></script>
+        <script src="bmap.js"></script>
+        <script src="jquery-3.2.0.js"></script>
+    </head>
+    <body>
+        <div id="map-wrap" style="height: 700px;">
+            <!-- 这里以后是地图 -->
+        </div>
+
+        <script type="text/javascript">
+            // 初始化echarts示例mapChart
+            var mapChart = echarts.init(document.getElementById('map-wrap'));
+
+
+
+            // mapChart的配置
+            var option = {
+                geo: {
+                    map: 'china',
+
+                    
+                }
+            }/**/
+            /*var option = {
+                tooltip: {
+                    formatter: '{b}', //提示标签格式
+                    backgroundColor:"pink",//提示标签背景颜色
+                    textStyle:{color:"#fff"} //提示标签字体颜色
+                },
+                series: [{
+                    type: 'map',
+                    mapType: 'china',
+                    label: {
+                        normal: {
+                            show: true,//显示省份标签
+                            textStyle:{color:"#c71585"}//省份标签字体颜色
+                        },    
+                        emphasis: {//对应的鼠标悬浮效果
+                            show: true,
+                            textStyle:{color:"#800080"}
+                        } 
+                    },
+                    itemStyle: {
+                        normal: {
+                            borderWidth: .5,//区域边框宽度
+                            borderColor: '#009fe8',//区域边框颜色
+                            areaColor:"#ffefd5",//区域颜色
+                        },
+                        emphasis: {
+                            borderWidth: .5,
+                            borderColor: '#4b0082',
+                            areaColor:"#ffdead",
+                        }
+                    },
+                    data:[
+                        {name:'福建', selected:true}//福建为选中状态
+                    ]
+                }],
+                bmap: {
+                    center: [116.307698, 40.056975],
+                    zoom: 5,
+
+                    roam: true, // 允许缩放
+
+                    mapStyle: {  // 百度地图自定义样式
+                        styleJson: [
+                            // 陆地
+                            {
+                            "featureType": "land",
+                              "elementType": "all",
+                              "stylers": {
+                                  "color": "#073763"
+                              }
+                          },
+                          // 水系
+                          {
+                              "featureType": "water",
+                              "elementType": "all",
+                              "stylers": {
+                                  "color": "#073763",
+                                  "lightness": -54
+                              }
+                          },
+                          // 国道与高速
+                          {
+                              "featureType": "highway",
+                              "elementType": "all",
+                              "stylers": {
+                                  "color": "#45818e"
+                              }
+                          },
+                          // 边界线
+                          {
+                              "featureType": "boundary",
+                              "elementType": "all",
+                              "stylers": {
+                                  "color": "#ffffff",
+                                  "lightness": -62,
+                                  "visibility": "on"
+                              }
+                          },
+                          // 行政标注
+                          {
+                              "featureType": "label",
+                              "elementType": "labels.text.fill",
+                              "stylers": {
+                                  "color": "#ffffff",
+                                  "visibility": "on"
+                              }
+                          },
+                          {
+                              "featureType": "label",
+                              "elementType": "labels.text.stroke",
+                              "stylers": {
+                                  "color": "#444444",
+                                  "visibility": "on"
+                              }
+                          }
+                        ]
+                    }
+                }
+            };*/
+            /*var option = {
+                bmap: {
+                    center: [116.307698, 40.056975],
+                    zoom: 5,
+
+                    roam: true, // 允许缩放
+
+                    mapStyle: {  // 百度地图自定义样式
+                        styleJson: [
+                            // 陆地
+                            {
+                            "featureType": "land",
+                              "elementType": "all",
+                              "stylers": {
+                                  "color": "#073763"
+                              }
+                          },
+                          // 水系
+                          {
+                              "featureType": "water",
+                              "elementType": "all",
+                              "stylers": {
+                                  "color": "#073763",
+                                  "lightness": -54
+                              }
+                          },
+                          // 国道与高速
+                          {
+                              "featureType": "highway",
+                              "elementType": "all",
+                              "stylers": {
+                                  "color": "#45818e"
+                              }
+                          },
+                          // 边界线
+                          {
+                              "featureType": "boundary",
+                              "elementType": "all",
+                              "stylers": {
+                                  "color": "#ffffff",
+                                  "lightness": -62,
+                                  "visibility": "on"
+                              }
+                          },
+                          // 行政标注
+                          {
+                              "featureType": "label",
+                              "elementType": "labels.text.fill",
+                              "stylers": {
+                                  "color": "#ffffff",
+                                  "visibility": "on"
+                              }
+                          },
+                          {
+                              "featureType": "label",
+                              "elementType": "labels.text.stroke",
+                              "stylers": {
+                                  "color": "#444444",
+                                  "visibility": "on"
+                              }
+                          }
+                        ]
+                    }
+                }
+            }*/
+            mapChart.setOption(option);
+            /*mapChart.on('mouseover', function (params) {
+                var dataIndex = params.dataIndex;
+                console.log(params);
+            });*/
+
+        </script>
+
+    </body>  
+</html>
